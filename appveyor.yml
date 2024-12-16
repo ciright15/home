@@ -12,7 +12,7 @@ environment:
   MY_ENV_VAR: "SomeValue"  # Example of an environment variable
 
 # Specify the build image
-image: Visual Studio 2019
+image: Visual Studio 2022
 
 # Specify the build script
 build_script:
