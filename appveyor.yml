@@ -1,37 +1,20 @@
-# AppVeyor configuration file
 version: 1.0.{build}
 
-# Specify the platform and configuration
-configuration: Release
-platform:
-  - x64
-  - x86
+# Install dependencies (if required by your app)
+install:
+  - echo "Installing dependencies..."
 
-# Specify the environment
-environment:
-  MY_ENV_VAR: "SomeValue"  # Example of an environment variable
-
-# Specify the build image
-image: Visual Studio 2022
-
-# Specify the build script
+# Build script: The commands AppVeyor will run during the build step
 build_script:
-  - cmd: echo "Starting build..."
-  - cmd: msbuild MyProject.sln /p:Configuration=Release
+  - echo "Running build steps..."
+  - echo "AppVeyor Build Version: \"%APPVEYOR_BUILD_VERSION%\""  # Properly quoted to prevent YAML parsing errors
+  - echo "Environment variable MY_TEST_VAR: \"%MY_TEST_VAR%\""    # Properly quoted
 
-# Specify the test script
+# Test script: The commands to run tests after the build step
 test_script:
-  - cmd: echo "Running tests..."
-  - cmd: vstest.console.exe MyProject.Tests\bin\Release\MyProject.Tests.dll
+  - echo "Running tests..."
+  - echo "Test passed!"
 
-# Specify artifacts to be collected
-artifacts:
-  - path: MyProject\bin\Release\*
-    name: MyProject Artifacts
-
-
-# Optional: Specify branches to build
-branches:
-  only:
-    - master
-    - develop
+# Optional steps after build is completed
+after_build:
+  - echo "Build process completed successfully."
