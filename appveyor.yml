@@ -2,19 +2,21 @@ version: 1.0.{build}
 
 # Install dependencies (if required by your app)
 install:
-  - echo "Installing dependencies..."
+  - ps: Write-Host "Installing dependencies..."
 
 # Build script: The commands AppVeyor will run during the build step
 build_script:
-  - echo "Running build steps..."
-  - echo "AppVeyor Build Version: \"%APPVEYOR_BUILD_VERSION%\""  # Properly quoted to prevent YAML parsing errors
-  - echo "Environment variable MY_TEST_VAR: \"%MY_TEST_VAR%\""    # Properly quoted
+  - ps: |
+      Write-Host "Running build steps..."
+      Write-Host "AppVeyor Build Version: $env:APPVEYOR_BUILD_VERSION"
+      Write-Host "Environment variable MY_TEST_VAR: $env:MY_TEST_VAR"
 
 # Test script: The commands to run tests after the build step
 test_script:
-  - echo "Running tests..."
-  - echo "Test passed!"
+  - ps: |
+      Write-Host "Running tests..."
+      Write-Host "Test passed!"
 
 # Optional steps after build is completed
 after_build:
-  - echo "Build process completed successfully."
+  - ps: Write-Host "Build process completed successfully."
