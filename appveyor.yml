@@ -1,0 +1,29 @@
+version: 1.0.{build}
+image: Visual Studio 2022
+
+# Build environment setup (Optional for your self-hosted runner)
+environment:
+  matrix:
+    - MY_ENV_VAR: "some_value"
+
+# Set up your build steps
+build_script:
+  - echo "Hello, this is a small build test."
+  - echo "Running on the self-hosted runner..."
+  - echo "Current working directory: %cd%"
+  - echo "AppVeyor build number: %APPVEYOR_BUILD_NUMBER%"
+  - echo "My environment variable is: %MY_ENV_VAR%"
+
+# Test script (Optional)
+test_script:
+  - echo "Running tests here..."
+  - pause
+
+# Install dependencies (Optional)
+install:
+  - echo "Installing dependencies..."
+
+# After build script (Optional)
+after_build:
+  - echo "Build completed successfully!"
+
