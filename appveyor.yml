@@ -1,13 +1,5 @@
 version: 1.0.{build}
 
-# Define the environment image to use for the build.
-# Since this is a self-hosted runner, you may not need to specify the image.
-# image: Visual Studio 2022 # Uncomment if using an image in AppVeyor cloud
-
-# Define environment variables (optional, can be used for testing)
-environment:
-  MY_TEST_VAR: "Hello, AppVeyor!"
-
 # Install dependencies (if required by your app)
 install:
   - echo "Installing dependencies..."
@@ -15,7 +7,14 @@ install:
 # Build script: The commands AppVeyor will run during the build step
 build_script:
   - echo "Running build steps..."
-  - echo "AppVeyor Build Version: $env:APPVEYOR_BUILD_VERSION"
-  - echo "Environment variable MY_TEST_VAR: $env:MY_TEST_VAR"
+  - echo "AppVeyor Build Version: %APPVEYOR_BUILD_VERSION%"
+  - echo "Environment variable MY_TEST_VAR: %MY_TEST_VAR%"
 
-# Test scr
+# Test script: The commands to run tests after the build step
+test_script:
+  - echo "Running tests..."
+  - echo "Test passed!"
+
+# Optional steps after build is completed
+after_build:
+  - echo "Build process completed successfully."
